@@ -1,0 +1,90 @@
+// General system template with menu and operation loop
+// Author: Ignacio Kriman 
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class BaseSystem {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        boolean anotherOperation = true;
+        int menuOption;
+
+        do {
+            while (true) {
+                System.out.println("=== Main Menu ===");
+                System.out.println("1. Option 1: Description.");
+                System.out.println("2. Option 2: Description.");
+                System.out.println("3. Option 3: Description.");
+                System.out.println("4. Exit.");
+                System.out.print("Select an option: ");
+
+                try {
+                    menuOption = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Enter a valid option.");
+                    sc.nextLine();
+                }
+            }
+
+            sc.nextLine(); // clear buffer
+
+            switch (menuOption) {
+                case 1:
+                    // Logic for option 1
+                    System.out.println("Executing option 1...");
+                    break;
+
+                case 2:
+                    // Logic for option 2
+                    System.out.println("Executing option 2...");
+                    break;
+
+                case 3:
+                    // Logic for option 3
+                    System.out.println("Executing option 3...");
+                    break;
+
+                case 4:
+                    System.out.println("Thank you for using the system.");
+                    anotherOperation = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid option, please try again.");
+                    break;
+            }
+
+            if (menuOption != 4) {
+                int continueOption;
+                do {
+                    System.out.println("\nDo you want to perform another operation?");
+                    System.out.println("1. Yes");
+                    System.out.println("2. No");
+                    System.out.print("Select: ");
+
+                    try {
+                        continueOption = sc.nextInt();
+                        if (continueOption == 1) {
+                            anotherOperation = true;
+                        } else if (continueOption == 2) {
+                            System.out.println("Thank you for using the system.");
+                            anotherOperation = false;
+                        } else {
+                            System.out.println("Enter a valid option.");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error, enter a valid number.");
+                        sc.nextLine();
+                        continueOption = 0; // reset to stay in the loop
+                    }
+                } while (continueOption != 1 && continueOption != 2);
+            }
+        } while (anotherOperation);
+
+        sc.close();
+    }
+}
+//ik
